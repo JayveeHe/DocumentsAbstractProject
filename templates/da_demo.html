@@ -8,56 +8,13 @@
     <script src="http://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
     <link href="http://cdn.bootcss.com/flat-ui/2.3.0/css/flat-ui.min.css" rel="stylesheet">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon"/>
-</head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h4 style="align-content: center;">
-                基于Textrank算法的简易中文摘要工具
-            </h4>
-
-            <p>
-                相关细节参见博文：
-                <a href="http://jayveehe.github.io/2016/05/11/da_textrank/">《基于TextRank的中文摘要工具》</a>
-            </p>
-        </div>
-    </div>
-</div>
-<div class="row" style="height: 400px;">
-    <div class="col-md-2"></div>
-    <div class="col-md-4" style="height: 100%;">
-        <p>
-            输入文本：
-        </p>
-        <textarea style="width:90%;height: 95%;" id="input_text" type="text"
-                  class="form-control has-success"></textarea>
-
-        <p class="row">
-
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-7">
-                    摘要句数：
-                </div>
-                <div class="col-md-5">
-                    <input type="number" id="sent_num" class="form-control has-success" value="5">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <button class="btn btn-info" style="width: 60%" id="btn_send">确认</button>
-        </div>
-        </p>
-
-    </div>
-    <div class="col-md-4" style="height: 100%;">
-        <p>
-            摘要结果：
-        </p>
-        <textarea class="form-control" style="width:90%;height: 95%;" id="output_text"></textarea></div>
-    <div class="col-md-2"></div>
     <script>
+        $(document).ready(function () {
+            var h = window.innerHeight;
+            console.log(h);
+            $("#main").css('height', h * 0.8);
+        });
+
         var btn_send = $('#btn_send');
         btn_send.click(function () {
             var full_text = $('#input_text').val();
@@ -79,6 +36,60 @@
             });
         })
     </script>
+</head>
+<body>
+<div class="container" id="main">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="align-content: center;">
+                基于Textrank算法的简易中文摘要工具
+            </h4>
+
+            <p>
+                相关细节参见博文：
+                <a href="http://jayveehe.github.io/2016/05/11/da_textrank/">《基于TextRank的中文摘要工具》</a>
+            </p>
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-2">
+            <span style="float:right;">摘要句数：</span>
+        </div>
+        <div class="col-md-1">
+            <input style="float: left;" type="number" id="sent_num" class="form-control has-success" value="5">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-info" id="btn_send" style="width: 80%;">确认</button>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row" style="height: 80%;">
+        <div class="col-md-1"></div>
+        <div class="col-md-5" style="height: 100%;">
+            <div class="row" style="height: 80%;">
+                <p>
+                    输入文本：
+                </p>
+        <textarea style="max-width: 100% ;width:90%;height: 100%;" id="input_text"
+                  class="form-control has-success"></textarea>
+
+            </div>
+
+        </div>
+        <div class="col-md-5" style="height: 100%;">
+            <div class="row" style="height: 80%;">
+                <p>
+                    摘要结果：
+                </p>
+                <textarea class="form-control" style="max-width: 100%; width:90%;height: 100%;"
+                          id="output_text"></textarea>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
 </div>
+
 </body>
 </html>
