@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>文本摘要Demo</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">-->
+    <script src="http://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+    <link href="http://cdn.bootcss.com/flat-ui/2.3.0/css/flat-ui.min.css" rel="stylesheet">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="align-content: center;">
+                基于Textrank算法的简易中文摘要工具
+            </h4>
+
+            <p>
+                相关细节参见博文：
+                <a href="http://jayveehe.github.io/2016/05/11/da_textrank/">《基于TextRank的中文摘要工具》</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row" style="height: 400px;">
+    <div class="col-md-2"></div>
+    <div class="col-md-4" style="height: 100%;">
+        <p>
+            输入文本：
+        </p>
+        <textarea style="width:90%;height: 95%;" id="input_text" type="text"
+                  class="form-control has-success"></textarea>
+
+        <p class="row">
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-7">
+                    摘要句数：
+                </div>
+                <div class="col-md-5">
+                    <input type="number" id="sent_num" class="form-control has-success" value="5">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-info" style="width: 60%" id="btn_send">确认</button>
+        </div>
+        </p>
+
+    </div>
+    <div class="col-md-4" style="height: 100%;">
+        <p>
+            摘要结果：
+        </p>
+        <textarea class="form-control" style="width:90%;height: 95%;" id="output_text"></textarea></div>
+    <div class="col-md-2"></div>
+    <script>
+        var btn_send = $('#btn_send');
+        btn_send.click(function () {
+            var full_text = $('#input_text').val();
+            {#            console.log(full_text);#}
+            var post_url = document.location + 'textrank';
+            {#            console.log(post_url);#}
+            $.post(post_url, {
+                text: full_text, sent_nums: $("#sent_num").val()
+            }, function (data, status) {
+                var s = '';
+                var d = eval(data);
+                {#                    console.log('data======='+d);#}
+                for (var i = 0; i < d.length; i++) {
+                    console.log(d[i]);
+                    s += (d[i])['sent'] + '。';
+                }
+                {#                console.log(s);#}
+                $("#output_text").val(s);
+            });
+        })
+    </script>
+</div>
+</body>
+</html>
