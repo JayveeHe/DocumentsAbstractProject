@@ -8,34 +8,7 @@
     <script src="http://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
     <link href="http://cdn.bootcss.com/flat-ui/2.3.0/css/flat-ui.min.css" rel="stylesheet">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon"/>
-    <script>
-        $(document).ready(function () {
-            var h = window.innerHeight;
-            console.log(h);
-            $("#main").css('height', h * 0.8);
-        });
 
-        var btn_send = $('#btn_send');
-        btn_send.click(function () {
-            var full_text = $('#input_text').val();
-            {#            console.log(full_text);#}
-            var post_url = document.location + 'textrank';
-            {#            console.log(post_url);#}
-            $.post(post_url, {
-                text: full_text, sent_nums: $("#sent_num").val()
-            }, function (data, status) {
-                var s = '';
-                var d = eval(data);
-                {#                    console.log('data======='+d);#}
-                for (var i = 0; i < d.length; i++) {
-                    console.log(d[i]);
-                    s += (d[i])['sent'] + '。';
-                }
-                {#                console.log(s);#}
-                $("#output_text").val(s);
-            });
-        })
-    </script>
 </head>
 <body>
 <div class="container" id="main">
@@ -90,6 +63,33 @@
         <div class="col-md-1"></div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        var h = window.innerHeight;
+        console.log(h);
+        $("#main").css('height', h * 0.8);
 
+    });
+    var btn_send = $('#btn_send');
+    btn_send.click(function () {
+        var full_text = $('#input_text').val();
+        {#            console.log(full_text);#}
+        var post_url = document.location + 'textrank';
+        {#            console.log(post_url);#}
+        $.post(post_url, {
+            text: full_text, sent_nums: $("#sent_num").val()
+        }, function (data, status) {
+            var s = '';
+            var d = eval(data);
+            {#                    console.log('data======='+d);#}
+            for (var i = 0; i < d.length; i++) {
+                console.log(d[i]);
+                s += (d[i])['sent'] + '。';
+            }
+            {#                console.log(s);#}
+            $("#output_text").val(s);
+        });
+    });
+</script>
 </body>
 </html>
