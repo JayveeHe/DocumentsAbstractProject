@@ -10,7 +10,7 @@ app = Flask(__name__)
 # def hello_world():
 #     return 'Hello World!'
 
-@app.route('/')
+@app.route('/da_demo')
 def demo():
     da_logger.info('PV from %s' % (request.remote_addr))
     return render_template('da_demo.html')
