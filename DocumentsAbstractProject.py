@@ -16,7 +16,7 @@ def demo():
     return render_template('da_demo.html')
 
 
-@app.route('/textrank', methods=['POST', 'GET'])
+@app.route('/da_demo/textrank', methods=['POST', 'GET'])
 def da():
     if request.method == 'POST':
         data = request.form
