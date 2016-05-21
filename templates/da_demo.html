@@ -74,7 +74,7 @@
     btn_send.click(function () {
         var full_text = $('#input_text').val();
         {#            console.log(full_text);#}
-        var post_url = document.location + 'textrank';
+        var post_url = document.location + '/textrank';
         {#            console.log(post_url);#}
         $.post(post_url, {
             text: full_text, sent_nums: $("#sent_num").val()
