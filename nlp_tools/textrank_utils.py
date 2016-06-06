@@ -66,7 +66,7 @@ def text_rank(sentences, num=10, pagerank_config={'alpha': 0.85, }):
 
 
 def split_sentences(full_text):
-    sents = re.split(u'[\n。;；?？]', full_text)
+    sents = re.split(u'[。;；？!！\n\.\?]', full_text)
     sents = [sent for sent in sents if len(sent) > 0]  # 去除只包含\n或空白符的句子
     return sents
 
@@ -85,6 +85,8 @@ def extract_abstracts(full_text, sent_num=10):
 
 
 if __name__ == '__main__':
+    a = u'laksjfkajslf!dlkajdlkf！大分类。的刷.卡机奥拉夫；大声 ？附近空?大方。'
+    split_sentences(a)
     raw_text = codecs.open('/Users/jayvee/github_project/DocumentsAbstractProject/static/text', 'r', 'utf8').read()
     res = extract_abstracts(raw_text, sent_num=5)
     ab = ''
